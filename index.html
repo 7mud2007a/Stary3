@@ -89,11 +89,41 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;bac
 footer{border-top:1px solid var(--ln);padding:40px 0;color:var(--mut);font-size:13px;background:rgba(7,8,10,.8)}
 .js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
 .js .rv.in{opacity:1;transform:none}
-@media(max-width:860px){.hg,.g2,.g3,.plans,.slider{grid-template-columns:1fr}.nav nav{display:none}.nav .pill{margin-left:auto}.glow{left:auto;right:12px;top:-30px}section{padding:80px 0}.plan.on{transform:none}}
+
+/* Cinematic WebGL point-cloud studio */
+.studio-section{padding-top:90px}
+.studio-heading{margin-bottom:32px}
+.studio-title-row{display:grid;grid-template-columns:1.1fr .8fr;gap:48px;align-items:end}
+.studio-title-row h2{max-width:12em}
+.studio-title-row .lead{font-size:15px;margin:0 0 5px}
+.studio-frame{position:relative;overflow:hidden;border:1px solid rgba(214,249,75,.24);border-radius:22px;background:radial-gradient(ellipse at 50% 45%,rgba(38,56,66,.52),rgba(7,8,10,.98) 68%);box-shadow:0 24px 100px rgba(0,0,0,.35),inset 0 0 80px rgba(95,180,255,.035)}
+.studio-top,.studio-bottom{min-height:44px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#8b9088;font-size:10px;letter-spacing:.08em}
+.studio-top{border-bottom:1px solid rgba(255,255,255,.08)}
+.studio-bottom{border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.studio-live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);margin-right:8px}
+.studio-bottom b{color:var(--lime)}
+#webgl-stage{position:relative;height:clamp(350px,55vw,650px);min-height:350px;overflow:hidden;touch-action:pan-y;cursor:grab}
+#webgl-stage:active{cursor:grabbing}
+#webgl-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}
+.studio-caption{position:absolute;bottom:18px;left:20px;right:20px;display:flex;justify-content:space-between;gap:12px;color:rgba(242,243,238,.58);font-size:9px;letter-spacing:.09em;pointer-events:none}
+.studio-crosshair{position:absolute;inset:12%;border:1px solid rgba(255,255,255,.045);border-radius:50%;pointer-events:none}
+.studio-crosshair:before,.studio-crosshair:after{content:"";position:absolute;background:rgba(255,255,255,.08)}
+.studio-crosshair:before{width:1px;height:140%;left:50%;top:-20%}
+.studio-crosshair:after{height:1px;width:140%;left:-20%;top:50%}
+.studio-loader{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#090b0e;color:var(--mut);font:10px var(--mono);letter-spacing:.12em;transition:opacity .6s}
+.studio-loader span{width:30px;height:30px;border:1px solid rgba(255,255,255,.12);border-top-color:var(--lime);border-radius:50%;animation:studio-spin 1s linear infinite}
+.studio-loader.done{opacity:0;pointer-events:none}
+@keyframes studio-spin{to{transform:rotate(360deg)}}
+#studio-motion{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:#dce0d5;border-radius:999px;padding:7px 11px;font:10px var(--mono);letter-spacing:.04em;cursor:pointer}
+#studio-motion:hover{border-color:var(--lime);color:var(--lime)}
+.studio-footnote{margin:14px 0 0;color:rgba(139,144,136,.7);font-size:9px;letter-spacing:.08em}
+@media(max-width:860px){.studio-title-row{grid-template-columns:1fr;gap:18px}.studio-top span:nth-child(2){display:none}.studio-top,.studio-bottom{padding:0 12px;font-size:9px}#webgl-stage{height:420px}.studio-caption{left:12px;right:12px;bottom:12px}.studio-caption span:last-child{max-width:52%;text-align:right}}
+@media(prefers-reduced-motion:reduce){.studio-loader span{animation:none}}
+\n@media(max-width:860px){.hg,.g2,.g3,.plans,.slider{grid-template-columns:1fr}.nav nav{display:none}.nav .pill{margin-left:auto}.glow{left:auto;right:12px;top:-30px}section{padding:80px 0}.plan.on{transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.js .rv{opacity:1;transform:none}.take{height:auto}.stick{position:static;height:auto;padding:40px 0}.pan{position:static;transform:none;border-radius:32px;padding:80px 24px}.pan h2{opacity:1}.trk i{width:var(--w)}}
 </style></head>
 <body>
-<canvas id="bg" aria-hidden="true"></canvas>
+
 <header><div class="w nav">
 <a class="logo" href="#top"><span class="lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 5 7 7-7 7M13 5l7 7-7 7"/></svg></span>Relay</a>
 <nav><a href="#product">Product</a><a href="#how">How it works</a><a href="#customers">Customers</a><a href="#pricing">Pricing</a></nav>
@@ -116,6 +146,28 @@ footer{border-top:1px solid var(--ln);padding:40px 0;color:var(--mut);font-size:
 <text class="s" x="250" y="30">true</text><text class="s" x="250" y="112">else</text></svg>
 <div class="runs mono"><div>● 09:41:02 refund over 500<b>125 ms</b></div><div>● 09:38:57 weekly export<b>2.1 s</b></div><div>● 09:31:14 invoice reminder<b>410 ms</b></div></div></div>
 </div></section>
+
+<section id="studio" class="studio-section">
+  <div class="w">
+    <div class="studio-heading rv">
+      <span class="pill mono"><i></i> realtime / webgl studio</span>
+      <div class="studio-title-row">
+        <h2>A living sculpture, <em>made of light.</em></h2>
+        <p class="lead">A point-cloud study in motion. Move through the scene, find your angle, and let the details reveal themselves.</p>
+      </div>
+    </div>
+    <div class="studio-frame rv">
+      <div class="studio-top mono"><span><b class="studio-live"></b> POINT CLOUD / 001</span><span>INTERACTIVE 3D STUDY</span><span id="studio-status">RENDERING IN REAL TIME</span></div>
+      <div id="webgl-stage" aria-label="Interactive three dimensional point-cloud sculpture">
+        <div class="studio-loader" id="studio-loader"><span></span><small>BUILDING THE SCENE</small></div>
+        <div class="studio-crosshair" aria-hidden="true"></div>
+        <div class="studio-caption"><span class="mono">FORM 01 — HELIX</span><span class="mono">DRAG TO ORBIT&nbsp; · &nbsp;SCROLL TO ZOOM</span></div>
+      </div>
+      <div class="studio-bottom mono"><span>01 / PARTICLE GEOMETRY</span><span>CHROMATIC FIELD <b>●</b> LIME / ICE BLUE</span><button id="studio-motion" type="button" aria-pressed="true">PAUSE MOTION&nbsp;Ⅱ</button></div>
+    </div>
+    <p class="studio-footnote mono rv">A DIGITAL OBJECT, NOT A VIDEO. EVERY PARTICLE IS RENDERED LIVE IN YOUR BROWSER.</p>
+  </div>
+</section>
 
 <section id="product"><div class="w"><span class="pill mono rv"><i></i>content service</span>
 <div class="g2" style="align-items:center;margin-top:20px"><h2 class="rv">Most of a process is <em>glue.</em></h2>
@@ -191,18 +243,170 @@ function sc(){ticking=false;var r=tk.getBoundingClientRect(),p=Math.min(1,Math.m
 if(!R)tk.style.setProperty("--p",p.toFixed(3));
 if(!R&&matchMedia("(hover:hover) and (pointer:fine)").matches){var y=Math.min(1,scrollY/600);tl.style.transform="perspective(900px) rotateY("+(-8*y)+"deg) rotateX("+(4*y)+"deg)"}}
 if(R)tk.style.setProperty("--p",1);else{addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(sc)}},{passive:true});sc()}
-var c=d.getElementById("bg"),x=c.getContext("2d"),W,H,dpr;
-function rs(){dpr=Math.min(2,devicePixelRatio||1);W=c.width=innerWidth*dpr;H=c.height=innerHeight*dpr}
-function draw(t){x.clearRect(0,0,W,H);x.globalCompositeOperation="lighter";
-var ph=t*.00025+scrollY*.0009;
-for(var i=0;i<34;i++){x.beginPath();
-for(var k=0;k<=40;k++){var u=k/40,px=u*W,
-py=H*(.62+.12*Math.sin(u*3.2+ph+i*.09)+.08*Math.sin(u*7+ph*1.6-i*.05))-u*H*.35+i*3*dpr;
-k?x.lineTo(px,py):x.moveTo(px,py)}
-x.strokeStyle=i%5===0?"rgba(95,180,255,.22)":"rgba(214,249,75,.2)";x.lineWidth=1.2*dpr;x.stroke()}
-var g=x.createRadialGradient(W*.8,H*.3,0,W*.8,H*.3,W*.45);g.addColorStop(0,"rgba(214,249,75,.16)");g.addColorStop(1,"rgba(214,249,75,0)");x.fillStyle=g;x.fillRect(0,0,W,H)}
-rs();addEventListener("resize",function(){rs();if(R)draw(0)});
-if(R)draw(0);else(function L(t){if(!d.hidden)draw(t);requestAnimationFrame(L)})(0)
+
 })();
 </script>
-</body></html>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const stage = document.getElementById('webgl-stage');
+const loader = document.getElementById('studio-loader');
+const status = document.getElementById('studio-status');
+const motionButton = document.getElementById('studio-motion');
+let renderer, scene, camera, controls, sculpture, animationId;
+let running = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let resizeObserver;
+
+try {
+  scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x080a0d, 0.17);
+  camera = new THREE.PerspectiveCamera(38, 1, 0.1, 80);
+  camera.position.set(0, 0.12, 8.7);
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+  renderer.setClearColor(0x07080a, 0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  stage.prepend(renderer.domElement);
+  renderer.domElement.setAttribute('aria-hidden', 'true');
+
+  const group = new THREE.Group();
+  scene.add(group);
+  sculpture = group;
+
+  // A procedural, high-density point-cloud form: a folded orbital ribbon.
+  const count = 42000;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+  const lime = new THREE.Color('#d6f94b');
+  const ice = new THREE.Color('#5fb4ff');
+  const pearl = new THREE.Color('#eaf4e8');
+  let seed = 73129;
+  const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+
+  for (let i = 0; i < count; i++) {
+    const t = random() * Math.PI * 2;
+    const u = random() * 2 - 1;
+    const band = random();
+    const twist = t * 2.15 + u * 1.6;
+    const radius = 1.25 + 0.78 * Math.cos(t * 2.0 + u * 1.7) + (random() - 0.5) * 0.22;
+    const x = Math.cos(t + twist * 0.24) * radius * (0.78 + band * 0.22);
+    const y = u * 2.15 + Math.sin(t * 3 + twist) * 0.24;
+    const z = Math.sin(t + twist * 0.24) * radius * 0.66 + Math.sin(t * 2.0) * 0.22;
+    const j = i * 3;
+    positions[j] = x + (random() - 0.5) * 0.045;
+    positions[j + 1] = y + (random() - 0.5) * 0.045;
+    positions[j + 2] = z + (random() - 0.5) * 0.045;
+
+    const mix = Math.min(1, Math.max(0, 0.5 + 0.42 * Math.sin(t * 1.4 + u * 2.8) + (random() - 0.5) * 0.2));
+    const c = lime.clone().lerp(ice, mix);
+    if (random() > 0.88) c.lerp(pearl, 0.7);
+    colors[j] = c.r; colors[j + 1] = c.g; colors[j + 2] = c.b;
+    sizes[i] = 0.65 + random() * 1.5;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+  const material = new THREE.PointsMaterial({
+    size: 0.025, vertexColors: true, transparent: true, opacity: 0.92,
+    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
+  });
+  const points = new THREE.Points(geometry, material);
+  group.add(points);
+
+  // Fine orbital traces add a restrained, studio-lit technical finish.
+  const orbitMaterial = new THREE.LineBasicMaterial({ color: 0x5fb4ff, transparent: true, opacity: 0.16 });
+  for (let n = 0; n < 3; n++) {
+    const ringGeometry = new THREE.BufferGeometry();
+    const ringPoints = [];
+    for (let k = 0; k <= 220; k++) {
+      const a = k / 220 * Math.PI * 2;
+      ringPoints.push(new THREE.Vector3(Math.cos(a) * (2.25 + n * 0.18), Math.sin(a) * (0.72 + n * 0.12), 0));
+    }
+    ringGeometry.setFromPoints(ringPoints);
+    const ring = new THREE.LineLoop(ringGeometry, orbitMaterial.clone());
+    ring.rotation.set(0.65 + n * 0.34, 0.28 + n * 0.2, n * 0.75);
+    group.add(ring);
+  }
+
+  const dustCount = 1800;
+  const dustPositions = new Float32Array(dustCount * 3);
+  for (let i = 0; i < dustCount; i++) {
+    dustPositions[i * 3] = (random() - 0.5) * 12;
+    dustPositions[i * 3 + 1] = (random() - 0.5) * 7;
+    dustPositions[i * 3 + 2] = (random() - 0.5) * 5;
+  }
+  const dustGeometry = new THREE.BufferGeometry();
+  dustGeometry.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
+  const dust = new THREE.Points(dustGeometry, new THREE.PointsMaterial({
+    color: 0x8eaaa9, size: 0.009, transparent: true, opacity: 0.36, depthWrite: false
+  }));
+  scene.add(dust);
+
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.045;
+  controls.enablePan = false;
+  controls.minDistance = 5.3;
+  controls.maxDistance = 12;
+  controls.autoRotate = running;
+  controls.autoRotateSpeed = 0.42;
+  controls.target.set(0, 0, 0);
+  controls.update();
+
+  const clock = new THREE.Clock();
+  function resize() {
+    const width = Math.max(stage.clientWidth, 1);
+    const height = Math.max(stage.clientHeight, 1);
+    camera.aspect = width / height;
+    camera.position.z = width < 600 ? 10 : 8.7;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+  }
+  resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(stage);
+  resize();
+
+  function animate() {
+    animationId = requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    if (running) {
+      sculpture.rotation.y = t * 0.095;
+      sculpture.rotation.x = Math.sin(t * 0.19) * 0.11;
+      sculpture.rotation.z = Math.sin(t * 0.13) * 0.045;
+      dust.rotation.y = -t * 0.012;
+    }
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+  loader.classList.add('done');
+  status.textContent = 'LIVE / 42,000 PARTICLES';
+  motionButton.setAttribute('aria-pressed', String(running));
+  if (!running) motionButton.textContent = 'RESUME MOTION ▶';
+  motionButton.addEventListener('click', () => {
+    running = !running;
+    controls.autoRotate = running;
+    motionButton.setAttribute('aria-pressed', String(running));
+    motionButton.textContent = running ? 'PAUSE MOTION Ⅱ' : 'RESUME MOTION ▶';
+    status.textContent = running ? 'LIVE / 42,000 PARTICLES' : 'MOTION PAUSED';
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(animationId);
+    else animate();
+  });
+} catch (error) {
+  console.error('WebGL studio could not initialize:', error);
+  loader.innerHTML = '<small>WEBGL IS UNAVAILABLE IN THIS BROWSER</small>';
+  status.textContent = 'RENDER UNAVAILABLE';
+}
+</script>
+\n</body></html>
